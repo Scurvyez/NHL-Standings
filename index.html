@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>NHL Teams Wins and Losses</title>
+    <link rel="stylesheet" type="text/css" href="app.css">
+</head>
+
+<body>
+    <header>
+        <h1>NHL</h1>
+        <h2>Wins \ Losses</h2>
+    </header>
+
+    <label for="filter-input">Filter by team:</label>
+    <input type="text" id="filter-input" placeholder="type team name">
+    <button id="clear-filter-btn">Clear</button>
+
+    <table id="teams-table">
+        <thead>
+            <tr>
+                <th data-sort-key="0">Team</th>
+                <th data-sort-key="1">Date</th>
+                <th data-sort-key="2">Opposing Team</th>
+                <th data-sort-key="3">Outcome</th>
+            </tr>
+        </thead>
+        <tbody id="teams-data">
+            <!-- Data will be inserted here -->
+        </tbody>
+    </table>
+
+</body>
+
+<script src="app.js"></script>
+
+</html>
