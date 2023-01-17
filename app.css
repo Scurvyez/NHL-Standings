@@ -1,11 +1,11 @@
 body {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
 
 header {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     background-color: #333333;
     color: white;
     padding: 25px;
@@ -13,17 +13,17 @@ header {
 }
 
 h1 {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
 }
 
 h2 {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     margin: 0;
 }
 
 label[for="filter-input"] {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     color: rgb(0, 0, 0);
     font-size: 16px;
     font-weight: bold;
@@ -34,7 +34,7 @@ label[for="filter-input"] {
 input#filter-input {
     color: #333;
     font-size: 16px;
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     border: 1px solid rgb(221, 221, 221);
     padding: 0px;
     margin: 10px 5px;
@@ -42,26 +42,38 @@ input#filter-input {
 }
 
 input#filter-input:hover {
-    font-family: monospace;
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     background-color: #ddd;
 }
 
 table {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     width: 100%;
     border-collapse: collapse;
     margin-top: 0px;
 }
 
 th, td {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     border: 1px solid #dddddd;
     padding: 8px;
     text-align: left;
 }
 
 th {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     background-color: #f2f2f2;
 }
 
 tr:nth-child(even) {
+    font-family: 'Franklin Gothic', 'Arial Narrow', Arial, sans-serif;
     background-color: #f2f2f2;
+}
+
+.win {
+    color: green;
+}
+
+.loss {
+    color: red;
 }

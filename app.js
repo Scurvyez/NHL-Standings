@@ -102,41 +102,53 @@ fetch(`https://v1.hockey.api-sports.io/games?league=${league}&season=${season}`,
             return response.json()
         throw new Error('Something went wrong')
     })
-    .then(data => console.log(data))
-
     .then(data => {
+        console.log(data)
         // Get the table body
         const tableBody = document.querySelector("#teams-table tbody");
         // Clear the table body
         tableBody.innerHTML = "";
 
+        // Get the current date
+        const currentDate = new Date();
+
         for (var i = 0; i < data.response.length; i++) {
+            var game = data.response[i];
+            const gameDate = new Date(game.date);
+            if (gameDate.getTime() > currentDate.getTime()) {
+                // Game date is in the future, skip this game
+                return;
+            }
+
             // Create a new row
-            var game = data.response[i]["games"];
             const row = document.createElement("tr");
 
-            // Create a new cell for the team name
-            const teamCell = document.createElement("td");
-            teamCell.textContent = game["teams"]["home"]["name"];
-            // Append the team cell to the row
-            row.appendChild(teamCell);
-
-            // Create a new cell for the date
-            const dateCell = document.createElement("td");
-            dateCell.textContent = game["date"];
-            // Append the date cell to the row
-            row.appendChild(dateCell);
-
-            // Create a new cell for the opposing team name
+            // Create the cells
+            const homeTeamCell = document.createElement("td");
             const opposingTeamCell = document.createElement("td");
-            opposingTeamCell.textContent = game["teams"]["away"]["name"];
-            // Append the opposing team cell to the row
-            row.appendChild(opposingTeamCell);
-
-            // Create a new cell for the outcome
+            const dateCell = document.createElement("td");
+            var homeTeamScore = game["scores"]["home"];
+            var opposingTeamScore = game["scores"]["away"];
             const outcomeCell = document.createElement("td");
-            outcomeCell.textContent = game["scores"]["home"] > game["scores"]["away"] ? "W" : "L";
-            // Append the outcome cell to the row
+
+            // Populate the cells with data
+            homeTeamCell.textContent = game["teams"]["home"]["name"];
+            opposingTeamCell.textContent = game["teams"]["away"]["name"];
+            let actualDate = new Date(game["date"]);
+            actualDate = actualDate.toISOString().slice(0, 10);
+            dateCell.textContent = actualDate;
+            if (homeTeamScore > opposingTeamScore) {
+                outcomeCell.textContent = "W";
+                outcomeCell.classList.add("win");
+            } else {
+                outcomeCell.textContent = "L";
+                outcomeCell.classList.add("loss");
+            }
+
+            // Append the cells to the row
+            row.appendChild(homeTeamCell);
+            row.appendChild(opposingTeamCell);
+            row.appendChild(dateCell);
             row.appendChild(outcomeCell);
 
             // Append the row to the table body
