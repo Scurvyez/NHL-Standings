@@ -124,16 +124,38 @@ fetch(`https://v1.hockey.api-sports.io/games?league=${league}&season=${season}`,
             const row = document.createElement("tr");
 
             // Create the cells
+            // home team
             const homeTeamCell = document.createElement("td");
+
+            //opposing team
             const opposingTeamCell = document.createElement("td");
+
+            // date
             const dateCell = document.createElement("td");
+
+            // scores + outcome
             var homeTeamScore = game["scores"]["home"];
             var opposingTeamScore = game["scores"]["away"];
             const outcomeCell = document.createElement("td");
 
+            // Create img elements
+            // home team
+            const homeTeamLogo = document.createElement("img");
+            homeTeamLogo.src = game["teams"]["home"]["logo"];
+            homeTeamLogo.classList.add("team-logo");
+
+            //opposing team
+            const opposingTeamLogo = document.createElement("img");
+            opposingTeamLogo.src = game["teams"]["away"]["logo"];
+            opposingTeamLogo.classList.add("team-logo");
+
             // Populate the cells with data
+            // home cells data
             homeTeamCell.textContent = game["teams"]["home"]["name"];
+
+            // oppossing cells data
             opposingTeamCell.textContent = game["teams"]["away"]["name"];
+
             let actualDate = new Date(game["date"]);
             actualDate = actualDate.toISOString().slice(0, 10);
             dateCell.textContent = actualDate;
@@ -146,9 +168,18 @@ fetch(`https://v1.hockey.api-sports.io/games?league=${league}&season=${season}`,
             }
 
             // Append the cells to the row
+            // home team
+            homeTeamCell.appendChild(homeTeamLogo);
             row.appendChild(homeTeamCell);
+
+            // opposing team
+            opposingTeamCell.appendChild(opposingTeamLogo);
             row.appendChild(opposingTeamCell);
+
+            // date
             row.appendChild(dateCell);
+
+            // outcome, W / L
             row.appendChild(outcomeCell);
 
             // Append the row to the table body
